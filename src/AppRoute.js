@@ -2,10 +2,10 @@ import React from 'react'
 import {
   BrowserRouter as Router,
   Route,
+  Link,
   Redirect,
+  withRouter
 } from 'react-router-dom'
-import LoginForm from './komponen/Login'
-import Dashboard from './komponen/Dashboard'
 
 const fakeAuth = {
   isAuthenticated: false,
@@ -18,6 +18,9 @@ const fakeAuth = {
     setTimeout(cb, 100)
   }
 }
+
+const Public = () => <h3>Public</h3>
+const Protected = () => <h3>Protected</h3>
 
 class Login extends React.Component {
   state = {
@@ -40,7 +43,8 @@ class Login extends React.Component {
 
     return (
       <div>
-        <LoginForm login={this.login}/>
+        <p>You must log in to view the page</p>
+        <button onClick={this.login}>Log in</button>
       </div>
     )
   }
@@ -57,13 +61,30 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )} />
 )
 
+const AuthButton = withRouter(({ history }) => (
+  fakeAuth.isAuthenticated ? (
+    <p>
+      Welcome! <button onClick={() => {
+        fakeAuth.signout(() => history.push('/'))
+      }}>Sign out</button>
+    </p>
+  ) : (
+    <p>You are not logged in.</p>
+  )
+))
+
 export default function AuthExample () {
   return (
     <Router>
       <div>
-        <Route exact path="/" component={Login}/>
+        <AuthButton/>
+        <ul>
+          <li><Link to="/public">Public Page</Link></li>
+          <li><Link to="/protected">Protected Page</Link></li>
+        </ul>
+        <Route path="/public" component={Public}/>
         <Route path="/login" component={Login}/>
-        <PrivateRoute path='/dashboard' component={Dashboard} />
+        <PrivateRoute path='/protected' component={Protected} />
       </div>
     </Router>
   )
