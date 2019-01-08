@@ -3,6 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
   Redirect,
+  withRouter
 } from 'react-router-dom'
 import LoginForm from './komponen/Login'
 import Dashboard from './komponen/Dashboard'
@@ -57,10 +58,20 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )} />
 )
 
+const AuthButton = withRouter(({ history }) => (
+  fakeAuth.isAuthenticated ? 
+  (
+    <Dashboard/>
+  ) : (
+    <p>tidaklogin</p>
+  )
+))
+
 export default function AuthExample () {
   return (
     <Router>
       <div>
+        <AuthButton/>
         <Route exact path="/" component={Login}/>
         <Route path="/login" component={Login}/>
         <PrivateRoute path='/dashboard' component={Dashboard} />
