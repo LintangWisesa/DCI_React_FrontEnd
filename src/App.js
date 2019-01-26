@@ -1,81 +1,68 @@
-import React from 'react'
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  withRouter
-} from 'react-router-dom'
-import LoginForm from './komponen/Login'
-import Dashboard from './komponen/Dashboard'
+import React, { Component } from 'react'
+import Dashboard from './dci_Dashboard'
 
-const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true
-    setTimeout(cb, 100)
-  },
-  signout(cb) {
-    this.isAuthenticated = false
-    setTimeout(cb, 100)
-  }
-}
-
-class Login extends React.Component {
+class App extends Component {
+  
   state = {
-    redirectToReferrer: false
+    login: false
   }
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState(() => ({
-        redirectToReferrer: true
-      }))
-    })
-  }
-  render() {
-    const { from } = this.props.location.state || { from: { pathname: '/' } }
-    const { redirectToReferrer } = this.state
 
-    if (redirectToReferrer === true) {
-      return <Redirect to={from} />
-    }
-
-    return (
+  render(){
+    
+    // form login
+    var loginForm = 
+    <div>
+      <div class="container">
+        <div class="mx-auto my-5"><br/><br/>
+          <h1 class="text-center">
+            <img alt='dci' src="dci.jpg" class="img-thumbnail" width="5%" height="5%"/>
+            &nbsp;&nbsp;PT. Dela Cemara Indah
+          </h1>
+        </div>
+        <div class="card card-login mx-auto mt-5">
+          <h5 class="card-header bg-info text-white text-center">
+            Login ke Dashboard
+          </h5>
+          <div class="card-body">
+            <form>
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus"/>
+                  <label for="inputEmail">Nama pengguna</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required"/>
+                  <label for="inputPassword">Password</label>
+                </div>
+              </div>
+              <div class="form-group">
+              </div>
+                <a onClick={()=>{this.setState({login: true})}}
+                class="btn btn-info btn-block text-white" href>
+                  Login
+                </a>
+            </form>
+            <div class="text-center">
+              <small class="d-block small my-3">
+                Copyright © PT Dela Cemara Indah 2018
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+        <small className="text-center" style={{position: 'fixed', bottom: '25px', width:'100%'}}>
+          Copyright © PT Dela Cemara Indah 2018
+        </small>
+    </div>
+    
+    return(
       <div>
-        <LoginForm login={this.login}/>
+        {this.state.login ? <Dashboard/> : loginForm}
       </div>
     )
   }
 }
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={(props) => (
-    fakeAuth.isAuthenticated === true
-      ? <Component {...props} />
-      : <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
-        }} />
-  )} />
-)
-
-const AuthButton = withRouter(({ history }) => (
-  fakeAuth.isAuthenticated ? 
-  (
-    <Dashboard/>
-  ) : (
-    <p>tidaklogin</p>
-  )
-))
-
-export default function AuthExample () {
-  return (
-    <Router>
-      <div>
-        <AuthButton/>
-        <Route exact path="/" component={Login}/>
-        <Route path="/login" component={Login}/>
-        <PrivateRoute path='/dashboard' component={Dashboard} />
-      </div>
-    </Router>
-  )
-}
+export default App
