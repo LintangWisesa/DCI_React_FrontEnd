@@ -19,8 +19,8 @@ class App extends Component {
             &nbsp;&nbsp;PT. Dela Cemara Indah
           </h1>
         </div>
-        <div class="card card-login mx-auto mt-5">
-          <h5 class="card-header bg-info text-white text-center">
+        <div class="card card-login mx-auto">
+          <h5 class="card-header bg-dark text-white text-center">
             Login ke Dashboard
           </h5>
           <div class="card-body">
@@ -40,7 +40,7 @@ class App extends Component {
               <div class="form-group">
               </div>
                 <a onClick={()=>{this.setState({login: true})}}
-                class="btn btn-info btn-block text-white" href>
+                class="btn btn-success btn-block text-white" href>
                   Login
                 </a>
             </form>

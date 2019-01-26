@@ -5,10 +5,10 @@ class Dashboard extends Component {
     return (
       <div className="Dashboard">
         
-        <nav style={{position: 'fixed', width:'100%', zIndex:'9999', marginBottom:'50px'}} class="navbar navbar-expand navbar-dark bg-dark static-top">
+        <nav style={{position: 'fixed', width:'100%', zIndex:'9999', height:'70px'}} class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-          <a class="navbar-brand mr-1" href="index.html">
-            <img src="dci.jpg" class="mx-2" width="8%" height="8%"/>
+          <a class="navbar-brand mr-1" href="/">
+            <img alt src="dci.jpg" class="mx-2" width="8%" height="8%"/>
             <b>PT Dela Cemara Indah</b>
           </a>
 
@@ -16,7 +16,8 @@ class Dashboard extends Component {
           <ul class="navbar-nav ml-auto ml-md-0">
             
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="" id="alertsDropdown" role="button" 
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Menu 1
               </a>
               <div class="dropdown-menu dropdown-menu-left" aria-labelledby="alertsDropdown">
@@ -32,7 +33,7 @@ class Dashboard extends Component {
 
           <div id="wrapper">
 
-          <div id="content-wrapper" style={{marginTop: '60px'}}>
+          <div id="content-wrapper" style={{marginTop: '80px'}}>
 
             <div class="container-fluid">
 
@@ -192,7 +193,7 @@ class Dashboard extends Component {
               </div>
 
             </div>
-            
+
             {/* {// Sticky Footer -->} */}
             <footer class="sticky-footer">
               <div class="container my-auto">
