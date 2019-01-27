@@ -38,7 +38,7 @@ class App extends Component {
     this.setState({
       loading: true
     })
-    if (this.refs.nama.value || this.refs.password.value){
+    if (this.refs.nama.value && this.refs.password.value){
       var url = 'http://localhost:1234/login'
       axios.post(url, {
         nama: this.refs.nama.value,
@@ -65,6 +65,8 @@ class App extends Component {
       setTimeout(
         this.createNotification('kosong'), 500
       )
+      this.refs.nama.value = ''
+      this.refs.password.value = ''
       this.setState({loading: false})
     }
   }
@@ -75,11 +77,11 @@ class App extends Component {
     var loginForm = 
     <div>
       <div class="container">
-        <div class="mx-auto my-5"><br/><br/>
-          <h1 class="text-center">
+        <div class="mx-auto my-3"><br/><br/>
+          <h2 class="text-center">
             <img alt='dci' src="dci.jpg" class="img-thumbnail" width="5%" height="5%"/>
             &nbsp;&nbsp;PT. Dela Cemara Indah
-          </h1>
+          </h2>
         </div>
         <div class="card card-login mx-auto">
           <h5 class="card-header bg-dark text-white text-center">
@@ -118,7 +120,7 @@ class App extends Component {
           Copyright © PT Dela Cemara Indah 2019
         </small>
     </div>
-    
+
     return(
       <div>
         <NotificationContainer/>

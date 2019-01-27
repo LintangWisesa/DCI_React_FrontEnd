@@ -143,7 +143,9 @@ class Dashboard extends Component {
               </a>
               <div class="dropdown-menu dropdown-menu-left" aria-labelledby="alertsDropdown">
                 <a class="dropdown-item" style={{cursor:'pointer'}}>Profil Saya</a>
-                <a class="dropdown-item" style={{cursor:'pointer'}}>Logout</a>
+                <a href='/' class="dropdown-item" style={{cursor:'pointer'}}>
+                  Logout
+                </a>
               </div>
             </li>
 
