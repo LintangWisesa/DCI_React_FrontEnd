@@ -5,15 +5,25 @@ class FileUser extends Component{
 
     state = {
         allUsers: [],
+        allDepts: [],
         userEdit: {}
     }
 
     componentDidMount(){
-        var url = 'http://localhost:1234/users'
-        axios.get(url)
+        var urlUsers = 'http://localhost:1234/users'
+        var urlDepts = 'http://localhost:1234/depts'
+        axios.get(urlUsers)
         .then((x)=>{
             this.setState({
                 allUsers: x.data
+            })
+            axios.get(urlDepts)
+            .then((x)=>{
+                this.setState({
+                    allDepts: x.data
+                })
+            }).catch(()=>{
+                console.log('error')
             })
         }).catch(()=>{
             console.log('error')
