@@ -5,25 +5,15 @@ class FileUser extends Component{
 
     state = {
         allUsers: [],
-        allDepts: [],
         userEdit: {}
     }
 
     componentDidMount(){
-        var urlUsers = 'http://localhost:1234/users'
-        var urlDepts = 'http://localhost:1234/depts'
+        var urlUsers = 'http://localhost:1234/userDept'
         axios.get(urlUsers)
         .then((x)=>{
             this.setState({
                 allUsers: x.data
-            })
-            axios.get(urlDepts)
-            .then((x)=>{
-                this.setState({
-                    allDepts: x.data
-                })
-            }).catch(()=>{
-                console.log('error')
             })
         }).catch(()=>{
             console.log('error')
@@ -39,12 +29,23 @@ class FileUser extends Component{
             console.log(this.state.userEdit)
         }
 
+        var allDepts = this.state.allUsers.map((val, i)=>{
+            var dataDept = {
+                dept: val.dept,
+                fulldept: val.fulldept
+            }
+            return(
+                <option value={dataDept.dept} key={i}>Dept: {dataDept.dept}/{dataDept.fulldept}</option>
+            )
+        })
+
         var allUsers = this.state.allUsers.map((val, i)=>{
             var dataUser = {
                 id: val.id,
                 nama: val.nama,
                 pass: val.password,
                 dept: val.dept,
+                fulldept: val.fulldept,
                 dibuat: val.dibuat,
                 diupdate: val.diupdate
             }
@@ -52,8 +53,7 @@ class FileUser extends Component{
                 <tr key={i}>
                     <td>{dataUser.id}</td>
                     <td>{dataUser.nama}</td>
-                    <td>{dataUser.pass}</td>
-                    <td>{dataUser.dept}</td>
+                    <td>{dataUser.fulldept}</td>
                     <td>{dataUser.dibuat}</td>
                     <td>{dataUser.diupdate}</td>
                     <td>
@@ -88,7 +88,6 @@ class FileUser extends Component{
                             <tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>Password</th>
                                 <th>Department</th>
                                 <th>Dibuat</th>
                                 <th>Diupdate</th>
@@ -99,7 +98,6 @@ class FileUser extends Component{
                             <tr>
                                 <th>ID</th>
                                 <th>Nama</th>
-                                <th>Password</th>
                                 <th>Department</th>
                                 <th>Dibuat</th>
                                 <th>Diupdate</th>
@@ -153,18 +151,15 @@ class FileUser extends Component{
                                         </div>
                                         <div class="form-group" className="col-md-4">
                                             <div class="form-label-group">
-                                            <input value={this.state.userEdit.pass} ref='password' type="password" id="inputPassword" class="form-control" placeholder="Password" required="required"/>
+                                            <input value={this.state.userEdit.pass} ref='password' type="text" id="inputPassword" class="form-control" placeholder="Password" required="required"/>
                                             <label for="inputPassword">Password</label>
                                             </div>
                                         </div>
                                         <div class="form-group" className="col-md-4">
                                             <div class="form-label-group">
                                             <select select={this.state.userEdit.dept} ref='dept' type="text" id="inputDept" class="form-control" placeholder="Dept" required="required">
-                                                <option>Department: {this.state.userEdit.dept}</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
+                                                <option selected disabled hidden>Dept: {this.state.userEdit.dept}/{this.state.userEdit.fulldept}</option>
+                                                {allDepts}
                                             </select>
                                             </div>
                                         </div>
