@@ -5,7 +5,9 @@ class FileUser extends Component{
 
     state = {
         allUsers: [],
-        userEdit: {}
+        allMenu: [],
+        userEdit: {},
+        cek: false
     }
 
     componentDidMount(){
@@ -20,14 +22,70 @@ class FileUser extends Component{
         })
     }
 
+    ubahnama = (x) => {
+        this.setState({
+            userEdit: {
+                nama: x
+            }
+        })
+    }
+    ubahpass = (x) => {
+        this.setState({
+            userEdit: {
+                pass: x
+            }
+        })
+    }
+    ubahdept = (x) => {
+        this.setState({
+            userEdit: {
+                dept: x
+            }
+        })
+        console.log(x)
+    }
+    ubahmenu = (x) => {
+        console.log(x)
+    }
+
     render(){
+
+        // ============================ function ===============================
 
         var editButton = (dataUser)=>{
             this.setState({
                 userEdit: dataUser
             })
-            console.log(this.state.userEdit)
+            var submenu = `http://localhost:1234/menu/id/${dataUser.id}`
+            axios.get(submenu).then((x)=>{
+                this.setState({
+                    allMenu: x.data
+                })
+            }).catch(()=>{
+                console.log('error')
+            })
         }
+
+        // ============================ komponen ===============================
+
+        var allMenu = this.state.allMenu.map((val, i)=>{
+            var dataMenu = {
+                id_user: val.id_user,
+                id_menu: val.id_menu,
+                submenu: val.submenu,
+                status: val.status
+            }
+            return(
+                <label key={i}>
+                    <input type = "checkbox"
+                    checked = {dataMenu.status === 'ok' ? true : false}
+                    value = {[dataMenu.id_user, dataMenu.id_menu]}
+                    onChange = {(e)=>{this.ubahmenu(e.target.value)}}
+                    />
+                    {dataMenu.submenu}
+                </label>
+            )
+        })
 
         var allDepts = this.state.allUsers.map((val, i)=>{
             var dataDept = {
@@ -69,6 +127,8 @@ class FileUser extends Component{
                 </tr>
             )
         })
+
+        // ============================ JSX body ===============================
 
         return(
             <div>
@@ -135,42 +195,52 @@ class FileUser extends Component{
                         <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button href="/File%20User" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="container-fluid">
                                 <div class="row">
-                                    
-                                        <div class="form-group" className="col-md-4">
-                                            <div class="form-label-group">
-                                            <input value={this.state.userEdit.nama} ref='nama' type="text" id="inputNama" class="form-control" placeholder="Email address" required="required" autofocus="autofocus"/>
-                                            <label for="inputNama">Nama</label>
-                                            </div>
+                                    <div class="form-group" className="col-md-4">
+                                        <div class="form-label-group">
+                                        <input onChange={(e)=>{this.ubahnama(e.target.value)}} 
+                                        value={this.state.userEdit.nama} 
+                                        ref='nama' type="text" id="inputNama" class="form-control" 
+                                        placeholder="Ketik nama..." required="required" autofocus="autofocus"/>
+                                        <label for="inputNama">Nama</label>
                                         </div>
-                                        <div class="form-group" className="col-md-4">
-                                            <div class="form-label-group">
-                                            <input value={this.state.userEdit.pass} ref='password' type="text" id="inputPassword" class="form-control" placeholder="Password" required="required"/>
-                                            <label for="inputPassword">Password</label>
-                                            </div>
+                                    </div>
+                                    <div class="form-group" className="col-md-4">
+                                        <div class="form-label-group">
+                                        <input onChange={(e)=>{this.ubahpass(e.target.value)}}
+                                        value={this.state.userEdit.pass} ref='password' type="text" id="inputPassword" class="form-control" placeholder="Password" required="required"/>
+                                        <label for="inputPassword">Password</label>
                                         </div>
-                                        <div class="form-group" className="col-md-4">
-                                            <div class="form-label-group">
-                                            <select select={this.state.userEdit.dept} ref='dept' type="text" id="inputDept" class="form-control" placeholder="Dept" required="required">
-                                                <option selected disabled hidden>Dept: {this.state.userEdit.dept}/{this.state.userEdit.fulldept}</option>
-                                                {allDepts}
-                                            </select>
-                                            </div>
+                                    </div>
+                                    <div class="form-group" className="col-md-4">
+                                        <div class="form-label-group">
+                                        <select onChange={(e)=>{this.ubahdept(e.target.value)}}
+                                        select={this.state.userEdit.dept} ref='dept' type="text" id="inputDept" 
+                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                            <option selected disabled hidden value={this.state.userEdit.dept}>
+                                                Dept: {this.state.userEdit.dept}/{this.state.userEdit.fulldept}
+                                            </option>
+                                            {allDepts}
+                                        </select>
                                         </div>
-                                    
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    {allMenu}
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-success">
+                                    <button href="/File%20User" type="button" class="btn btn-success">
                                         <i class="far fa-save"></i>&nbsp;&nbsp;Simpan
                                     </button>
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                                    <button href="/File%20User" type="button" class="btn btn-danger" data-dismiss="modal">
                                         <i class="fas fa-times"></i>&nbsp;&nbsp;Batal
                                     </button>
                                 </div>
