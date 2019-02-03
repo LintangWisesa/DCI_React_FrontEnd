@@ -303,6 +303,15 @@ class App extends Component {
         <SimpleStorage parent={this} />
         <NotificationContainer/>
         {this.state.login ? dashboard : loginForm}
+        
+        {/* {// copyright Footer -->} */}
+        <footer class="sticky-footer" style={{width:'100%'}}>
+            <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright © PT Dela Cemara Indah 2019</span>
+            </div>
+            </div>
+        </footer>
       </div>
     )
   }
