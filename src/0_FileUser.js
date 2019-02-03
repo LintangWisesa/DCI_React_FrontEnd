@@ -6,6 +6,7 @@ class FileUser extends Component{
     state = {
         allUsers: [],
         allMenu: [],
+        allDepts: [],
         userEdit: {},
         cek: false
     }
@@ -16,6 +17,13 @@ class FileUser extends Component{
         .then((x)=>{
             this.setState({
                 allUsers: x.data
+            })
+            var urlDept = 'http://localhost:1234/depts'
+            axios.get(urlDept)
+            .then((x)=>{
+                this.setState({
+                    allDepts: x.data
+                })
             })
         }).catch(()=>{
             console.log('error')
@@ -87,7 +95,7 @@ class FileUser extends Component{
             )
         })
 
-        var allDepts = this.state.allUsers.map((val, i)=>{
+        var allDepts = this.state.allDepts.map((val, i)=>{
             var dataDept = {
                 dept: val.dept,
                 fulldept: val.fulldept
@@ -142,6 +150,11 @@ class FileUser extends Component{
                         <i class="fas fa-table"></i>
                         &nbsp;&nbsp;File User</div>
                     <div class="card-body">
+
+                        <button className="btn btn-success mb-3" data-toggle="modal" data-target="#exampleModalCenter2">
+                            <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Tambah User
+                        </button>
+
                         <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -185,7 +198,9 @@ class FileUser extends Component{
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                            <h5 class="modal-title" id="exampleModalCenterTitle">
+                                <i class="fas fa-user-edit"></i>&nbsp;Edit Data User
+                            </h5>
                             <button href="/File%20User" type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>
@@ -231,7 +246,7 @@ class FileUser extends Component{
                                     <button href="/File%20User" type="button" class="btn btn-success">
                                         <i class="far fa-save"></i>&nbsp;&nbsp;Simpan
                                     </button>
-                                    <button href="/File%20User" type="button" class="btn btn-danger" data-dismiss="modal">
+                                    <button onClick={()=>{window.location.reload()}} href="/File%20User" type="button" class="btn btn-danger" data-dismiss="modal">
                                         <i class="fas fa-times"></i>&nbsp;&nbsp;Batal
                                     </button>
                                 </div>
@@ -241,6 +256,66 @@ class FileUser extends Component{
                     </div>
                 </div>
             </div>
+
+            {/* {// Add user Modal popup -->} */}
+            <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalCenterTitle">
+                                <i class="fas fa-user-plus"></i>&nbsp;Tambah Data User
+                            </h5>
+                            <button href="/File%20User" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <div class="form-label-group">
+                                        <input ref='nama' type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus"/>
+                                        <label for="inputEmail">Nama pengguna</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <div class="form-label-group">
+                                        <input ref='pass' type="email" id="inputPass" class="form-control" placeholder="Email address" required="required" autofocus="autofocus"/>
+                                        <label for="inputPass">Password</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" className="col-md-4">
+                                        <div class="form-label-group">
+                                        <select
+                                        ref='dept' type="text" id="inputDept" 
+                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                            <option hidden>
+                                                Pilih department...
+                                            </option>
+                                            {allDepts}
+                                        </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    {/* {allMenu} */}
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button href="/File%20User" type="button" class="btn btn-success">
+                                        <i class="far fa-save"></i>&nbsp;&nbsp;Simpan
+                                    </button>
+                                    <button onClick={()=>{window.location.reload()}} href="/File%20User" type="button" class="btn btn-danger" data-dismiss="modal">
+                                        <i class="fas fa-times"></i>&nbsp;&nbsp;Batal
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </div>
         )
     }

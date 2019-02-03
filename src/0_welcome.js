@@ -12,7 +12,7 @@ class welcome extends Component{
                     class="alert alert-danger" role="alert">
                     </div>
                     
-                    <img style={{width:'80%', marginTop:'5px'}} class="img-fluid rounded" alt="ptdci"
+                    <img style={{width:'80%', marginTop:'5px'}} class="img-fluid rounded" alt="PT. Dela Cemara Indah"
                     src="http://www.delacemaraindah.co.id/sites/default/files/SlideShow1.jpg?1340872533"/>
                     
                     <div style={{width:'80%', marginTop:'20px'}} 

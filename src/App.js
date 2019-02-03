@@ -89,9 +89,15 @@ class App extends Component {
           }).then((x)=>{
             console.log(x.data)
             if(x.data.length > 0){
-              this.setState({subMaster: x.data})
+              this.setState({
+                subMaster: x.data,
+                loading: false
+              })
             } else {
-              this.setState({subMaster: [{submenu: 'Menu tidak tersedia'}]})
+              this.setState({
+                subMaster: [{submenu: 'Menu tidak tersedia'}],
+                loading: false
+              })
             }
           })
           axios.post('http://localhost:1234/menu/mutasi', {
@@ -99,9 +105,15 @@ class App extends Component {
           }).then((x)=>{
             console.log(x.data)
             if(x.data.length > 0){
-              this.setState({subMutasi: x.data})
+              this.setState({
+                subMutasi: x.data,
+                loading: false
+              })
             } else {
-              this.setState({subMutasi: [{submenu: 'Menu tidak tersedia'}]})
+              this.setState({
+                subMutasi: [{submenu: 'Menu tidak tersedia'}],
+                loading: false
+              })
             }
           })
           axios.post('http://localhost:1234/menu/laporan', {
@@ -109,9 +121,15 @@ class App extends Component {
           }).then((x)=>{
             console.log(x.data)
             if(x.data.length > 0){
-              this.setState({subLaporan: x.data})
+              this.setState({
+                subLaporan: x.data,
+                loading: false
+              })
             } else {
-              this.setState({subLaporan: [{submenu: 'Menu tidak tersedia'}]})
+              this.setState({
+                subLaporan: [{submenu: 'Menu tidak tersedia'}],
+                loading: false
+              })
             }
           })
         }
@@ -182,11 +200,11 @@ class App extends Component {
       if (this.state.subMaster.length > 1){  
         var menu = val.submenu
         return (
-        <Link to={`/${menu}`}>
-          <a key={i} class="dropdown-item" style={{cursor:'pointer'}}>
+        // <Link to={`/${menu}`}>
+          <a href={`/${menu}`} key={i} class="dropdown-item" style={{cursor:'pointer'}}>
             {menu}
           </a>
-        </Link>
+        // </Link>
         )} else {
           var menu = val.submenu
           return (
@@ -200,11 +218,11 @@ class App extends Component {
       if (this.state.subMutasi.length > 1){  
         var menu = val.submenu
         return (
-        <Link to={`/${menu}`}>
-          <a key={i} class="dropdown-item" style={{cursor:'pointer'}}>
+        // <Link to={`/${menu}`}>
+          <a href={`/${menu}`} key={i} class="dropdown-item" style={{cursor:'pointer'}}>
             {menu}
           </a>
-        </Link>
+        // </Link>
       )} else {
         var menu = val.submenu
         return (
@@ -218,11 +236,11 @@ class App extends Component {
       if (this.state.subLaporan.length > 1){  
         var menu = val.submenu
         return (
-        <Link to={`/${menu}`}>
-          <a key={i} class="dropdown-item" style={{cursor:'pointer'}}>
+        // <Link to={`/${menu}`}>
+          <a href={`/${menu}`} key={i} class="dropdown-item" style={{cursor:'pointer'}}>
             {menu}
           </a>
-        </Link>
+        // </Link>
       )} else {
         var menu = val.submenu
         return (
@@ -283,9 +301,11 @@ class App extends Component {
                 {this.state.user.nama}
               </a>
               <div class="dropdown-menu dropdown-menu-left" aria-labelledby="alertsDropdown">
-                <a class="dropdown-item" style={{cursor:'pointer'}}>Profil Saya</a>
+                <a class="dropdown-item" style={{cursor:'pointer'}}>
+                  <i class="far fa-address-card"></i>&nbsp;&nbsp;Profil Saya
+                </a>
                 <a onClick={this.logout} class="dropdown-item" style={{cursor:'pointer'}}>
-                  Logout
+                  {this.state.loading ? <img style={{height:'30px', width:'30px'}} alt="" src="wait.gif"/> : <span><i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout</span>}
                 </a>
               </div>
             </li>
