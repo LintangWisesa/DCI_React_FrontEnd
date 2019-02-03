@@ -6,6 +6,7 @@ class FileUser extends Component{
     state = {
         allUsers: [],
         allMenu: [],
+        allNewMenu: [],
         allDepts: [],
         userEdit: {},
         cek: false
@@ -74,6 +75,17 @@ class FileUser extends Component{
             })
         }
 
+        var addButton = ()=>{
+            var submenu = `http://localhost:1234/menu`
+            axios.get(submenu).then((x)=>{
+                this.setState({
+                    allNewMenu: x.data
+                })
+            }).catch(()=>{
+                console.log('error')
+            })
+        }
+
         // ============================ komponen ===============================
 
         var allMenu = this.state.allMenu.map((val, i)=>{
@@ -84,13 +96,29 @@ class FileUser extends Component{
                 status: val.status
             }
             return(
-                <label key={i}>
+                <label key={i} className="col-md-4" style={{fontSize:'12px'}}>
                     <input type = "checkbox"
                     checked = {dataMenu.status === 'ok' ? true : false}
                     value = {[dataMenu.id_user, dataMenu.id_menu]}
                     onChange = {(e)=>{this.ubahmenu(e.target.value)}}
                     />
-                    {dataMenu.submenu}
+                    &nbsp;{dataMenu.submenu}
+                </label>
+            )
+        })
+
+        var allNewMenu = this.state.allNewMenu.map((val, i)=>{
+            var dataMenu = {
+                id: val.id,
+                submenu: val.submenu
+            }
+            return(
+                <label key={i} className="col-md-4" style={{fontSize:'12px'}}>
+                    <input type = "checkbox"
+                    value = {dataMenu.id}
+                    onChange = {(e)=>{console.log(dataMenu.id)}}
+                    />
+                    &nbsp;{dataMenu.submenu}
                 </label>
             )
         })
@@ -151,8 +179,9 @@ class FileUser extends Component{
                         &nbsp;&nbsp;File User</div>
                     <div class="card-body">
 
-                        <button className="btn btn-success mb-3" data-toggle="modal" data-target="#exampleModalCenter2">
-                            <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Tambah User
+                        <button onClick={addButton} className="btn btn-success mb-3" 
+                        data-toggle="modal" data-target="#exampleModalCenter2">
+                            <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Tambah
                         </button>
 
                         <div class="table-responsive">
@@ -238,6 +267,10 @@ class FileUser extends Component{
                                     </div>
                                 </div>
 
+                                <hr/>
+                                <h5 class="mb-3 modal-title" id="exampleModalCenterTitle">
+                                    <i class="fas fa-list-ul"></i>&nbsp;&nbsp;Menu Diizinkan
+                                </h5>
                                 <div className="row">
                                     {allMenu}
                                 </div>
@@ -298,8 +331,12 @@ class FileUser extends Component{
                                     </div>
                                 </div>
 
+                                <hr/>
+                                <h5 class="mb-3 modal-title" id="exampleModalCenterTitle">
+                                    <i class="fas fa-list-ul"></i>&nbsp;&nbsp;Menu Diizinkan
+                                </h5>
                                 <div className="row">
-                                    {/* {allMenu} */}
+                                    {allNewMenu}
                                 </div>
 
                                 <div class="modal-footer">
