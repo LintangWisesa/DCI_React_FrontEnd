@@ -98,7 +98,7 @@ class FileUser extends Component{
             return(
                 <label key={i} className="col-md-4" style={{fontSize:'12px'}}>
                     <input type = "checkbox"
-                    checked = {dataMenu.status === 'ok' ? true : false}
+                    defaultChecked = {dataMenu.status === 'ok' ? true : false}
                     value = {[dataMenu.id_user, dataMenu.id_menu]}
                     onChange = {(e)=>{this.ubahmenu(e.target.value)}}
                     />
