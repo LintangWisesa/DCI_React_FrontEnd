@@ -114,9 +114,9 @@ class FileUser extends Component{
             }
             return(
                 <label key={i} className="col-md-4" style={{fontSize:'12px'}}>
-                    <input type = "checkbox"
+                    <input type = "checkbox" ref={`cekbok${i}`}
                     value = {dataMenu.id}
-                    onChange = {(e)=>{console.log(dataMenu.id)}}
+                    onChange = {(e)=>{console.log(dataMenu.id, this.refs)}}
                     />
                     &nbsp;{dataMenu.submenu}
                 </label>
