@@ -253,10 +253,13 @@ class App extends Component {
     // dashboard
     var dashboard = 
     <div className="Dashboard">
+        
         <NotificationContainer/>
-        <nav style={{position: 'fixed', width:'100%', zIndex:'9999', height:'70px'}} class="navbar navbar-expand navbar-dark bg-dark static-top">
+        
+        <nav style={{position: 'fixed', width:'100%', zIndex:'9999', height:'70px'}} 
+        class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-          <a class="navbar-brand mr-1" href="/">
+          <a class="navbar-brand" href="/">
             <img alt src="dci.jpg" class="mx-2" width="8%" height="8%"/>
             <b>PT Dela Cemara Indah</b>
           </a>
@@ -310,6 +313,7 @@ class App extends Component {
               </div>
             </li>
           </ul>
+          
           </nav>
 
         <div>
