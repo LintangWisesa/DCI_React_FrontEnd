@@ -7,6 +7,7 @@ import SimpleStorage from "react-simple-storage";
 import { Link, Route } from 'react-router-dom'
 import welcome from './0_welcome'
 import FileUser from './0_FileUser'
+import Profil from './0_Profil'
 
 class App extends Component {
   
@@ -304,7 +305,7 @@ class App extends Component {
                 {this.state.user.nama}
               </a>
               <div class="dropdown-menu dropdown-menu-left" aria-labelledby="alertsDropdown">
-                <a class="dropdown-item" style={{cursor:'pointer'}}>
+                <a href='/Profil' class="dropdown-item" style={{cursor:'pointer'}}>
                   <i class="far fa-address-card"></i>&nbsp;&nbsp;Profil Saya
                 </a>
                 <a onClick={this.logout} class="dropdown-item" style={{cursor:'pointer'}}>
@@ -319,6 +320,7 @@ class App extends Component {
         <div>
           <Route exact path="/" component={welcome}/>
           <Route path="/File User" component={FileUser}/>
+          <Route path="/Profil" render={(props) => <Profil {...props} datauser={this.state.user} />}/>
         </div>
       </div>
 
