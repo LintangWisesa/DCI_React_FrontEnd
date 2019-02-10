@@ -8,7 +8,7 @@ class welcome extends Component{
                 <div id="content-wrapper" style={{marginTop: '30px'}}>
                 <div class="container-fluid">
                     
-                    <div style={{width:'80%', marginTop:'80px'}} 
+                    <div style={{width:'80%', marginTop:'120px'}} 
                     class="alert alert-danger" role="alert">
                     </div>
                     

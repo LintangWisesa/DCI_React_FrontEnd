@@ -11,7 +11,7 @@ class Profil extends Component{
         return(
             <div>
                 <div id="wrapper">
-                <div id="content-wrapper" style={{marginTop: '80px'}}>
+                <div id="content-wrapper" style={{marginTop: '120px'}}>
                 <div class="container-fluid">
                     <div class="card mb-3 mx-5">
                         <div class="card-header">

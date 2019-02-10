@@ -259,11 +259,14 @@ class App extends Component {
         
         <nav style={{position: 'fixed', width:'100%', zIndex:'9999', height:'70px'}} 
         class="navbar navbar-expand navbar-dark bg-dark static-top">
-          
           <a class="navbar-brand" href="/">
             <img alt src="dci.jpg" class="mx-2" width="8%" height="8%"/>
             <b>PT Dela Cemara Indah</b>
           </a>
+        </nav>
+
+        <nav style={{position: 'fixed', width:'100%', zIndex:'9999', height:'60px'}} 
+        class="mt-5 navbar navbar-expand navbar-dark bg-dark static-top">
 
           {/* {// Navbar -->} */}
           <ul class="navbar-nav ml-auto ml-md-0">

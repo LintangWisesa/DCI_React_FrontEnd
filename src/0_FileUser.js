@@ -169,11 +169,11 @@ class FileUser extends Component{
         return(
             <div>
                 <div id="wrapper">
-                <div id="content-wrapper" style={{marginTop: '80px'}}>
+                <div id="content-wrapper" style={{marginTop: '120px'}}>
                 <div class="container-fluid">
 
                     {/* {// DataTables Example -->} */}
-                    <div class="card mb-3">
+                    <div class="card mb-3 mx-5">
                     <div class="card-header">
                         <i class="fas fa-table"></i>
                         &nbsp;&nbsp;File User</div>
@@ -185,8 +185,8 @@ class FileUser extends Component{
                         </button>
 
                         <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
+                        <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                            <thead className='thead-dark'>
                             <tr>
                                 <th>ID</th>
                                 <th>Nama</th>
