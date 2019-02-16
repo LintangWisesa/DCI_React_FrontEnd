@@ -8,6 +8,7 @@ import { Link, Route } from 'react-router-dom'
 import welcome from './0_welcome'
 import FileUser from './0_FileUser'
 import Profil from './0_Profil'
+import MasterKaryawan from './0_MasterKaryawan'
 
 class App extends Component {
   
@@ -324,6 +325,7 @@ class App extends Component {
           <Route exact path="/" component={welcome}/>
           <Route path="/File User" component={FileUser}/>
           <Route path="/Profil" render={(props) => <Profil {...props} datauser={this.state.user} />}/>
+          <Route path="/Master Karyawan" component={MasterKaryawan}/>
         </div>
       </div>
 
