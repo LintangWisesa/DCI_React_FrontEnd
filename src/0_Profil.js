@@ -14,10 +14,10 @@ class Profil extends Component{
                 <div id="content-wrapper" style={{marginTop: '120px'}}>
                 <div class="container-fluid">
                     <div class="card mb-3 mx-5">
-                        <div class="card-header">
+                        <div class="card-header alert alert-primary">
                             <i class="far fa-address-card"></i>&nbsp;&nbsp;Profil Saya
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style={{textTransform: 'capitalize'}}>
                             <div class='row my-5'>
                                 <div class='col-4' style={{textAlign: 'center'}}>
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9HFLw9fcwYyNkUls-_g8umpEqAZlp4WHViwoFqr9vq3wqhlmu" 

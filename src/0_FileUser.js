@@ -174,18 +174,18 @@ class FileUser extends Component{
 
                     {/* {// DataTables Example -->} */}
                     <div class="card mb-3 mx-5">
-                    <div class="card-header">
+                    <div class="card-header alert alert-primary">
                         <i class="fas fa-table"></i>
                         &nbsp;&nbsp;File User</div>
-                    <div class="card-body">
+                    <div class="card-body" style={{textTransform: 'capitalize'}}>
 
                         <button onClick={addButton} className="btn btn-success mb-3" 
                         data-toggle="modal" data-target="#exampleModalCenter2">
-                            <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Tambah
+                            <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Tambah User
                         </button>
 
                         <div class="table-responsive">
-                        <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-hover table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead className='thead-dark'>
                             <tr>
                                 <th>ID</th>

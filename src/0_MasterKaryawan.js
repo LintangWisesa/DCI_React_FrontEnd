@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 
 class MasterKaryawan extends Component{
 
     state = {
-        karyawans: []
+        karyawans: [],
+        nip: ''
     }
 
     componentDidMount(){
@@ -31,15 +33,17 @@ class MasterKaryawan extends Component{
                 nama: val.nama,
                 jabatan: val.jabatan,
                 department: val.department,
+                seksi: val.seksi,
                 stat_peg: val.stat_peg,
                 telp: val.telp
             }
             return(
                 <tr key={i}>
-                    <td>{data.nip}</td>
-                    <td>{data.nama}</td>
+                    <td><Link to={`/karyawan/${data.nip}`}>{data.nip}</Link></td>
+                    <td><Link to={`/karyawan/${data.nip}`}>{data.nama}</Link></td>
                     <td>{data.jabatan}</td>
                     <td>{data.department}</td>
+                    <td>{data.seksi}</td>
                     <td>{data.stat_peg}</td>
                     <td>{data.telp}</td>
                 </tr>
@@ -56,19 +60,26 @@ class MasterKaryawan extends Component{
 
                     {/* {// DataTables Example -->} */}
                     <div class="card mb-3 mx-5">
-                    <div class="card-header">
+                    <div class="card-header alert alert-primary">
                         <i class="fas fa-table"></i>
                         &nbsp;&nbsp;Master Karyawan</div>
-                    <div class="card-body">
+                    
+                    <div class="card-body" style={{textTransform: 'capitalize'}}>
+                        
+                        <button className="btn btn-success mb-3" 
+                        data-toggle="modal" data-target="#exampleModalCenter2">
+                            <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Tambah Karyawan
+                        </button>
 
                         <div class="table-responsive">
-                        <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead className='thead-dark'>
                             <tr>
                                 <th>NIP</th>
                                 <th>Nama</th>
                                 <th>Jabatan</th>
                                 <th>Department</th>
+                                <th>Seksi</th>
                                 <th>Status</th>
                                 <th>No. Telp</th>
                             </tr>
@@ -79,6 +90,7 @@ class MasterKaryawan extends Component{
                                 <th>Nama</th>
                                 <th>Jabatan</th>
                                 <th>Department</th>
+                                <th>Seksi</th>
                                 <th>Status</th>
                                 <th>No. Telp</th>
                             </tr>
