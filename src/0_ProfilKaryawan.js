@@ -47,38 +47,42 @@ class ProfilKaryawan extends Component{
                             
                             <div class='row my-3'>
                                 
+                                {/* Foto */}
+                                
                                 <div class='col-3' style={{textAlign: 'center'}}>
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9HFLw9fcwYyNkUls-_g8umpEqAZlp4WHViwoFqr9vq3wqhlmu" 
-                                    class="rounded-circle mt-4"/>
-                                    <br/><br/>
+                                    class="rounded-circle my-4"/>
+                                    <br/>
                                     <button className='btn btn-secondary btn-sm' style={{width:'210px', height:'40px'}}>
                                         <input type="file" id="foto" name="foto"/>
                                     </button>
                                 </div>
 
-                                <div class='col-4'>
+                                {/* Data Diri */}
+
+                                <div class='col-5'>
                                     <div class="table-responsive">
-                                        <h4><i class="far fa-address-card"></i>&nbsp;&nbsp;Data Diri</h4>
+                                        <h4><i class="mb-3 far fa-address-card"></i>&nbsp;&nbsp;Data Diri</h4>
                                         <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                             <tbody>
                                                 <tr>
-                                                    <th style={{width:120}} class="table-dark">NIP</th>
+                                                    <th style={{width:150}}>NIP</th>
                                                     <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.nip}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-dark">Nama</th>
+                                                    <th>Nama</th>
                                                     <td><input className="form-control"style={{textTransform:'capitalize'}}  defaultValue={this.state.karyawan.nama}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-dark">Gender</th>
+                                                    <th>Gender</th>
                                                     <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kelamin}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-dark">Tgl. Lahir</th>
-                                                    <td><input type='date' className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.tgl_lahir}/></td>
+                                                    <th>Tanggal Lahir</th>
+                                                    <td><input type='date' className="form-control" style={{width:200, textTransform:'capitalize'}} defaultValue={this.state.tgl_lahir}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-dark">Kota Asal</th>
+                                                    <th>Kota Asal</th>
                                                     <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.lahir}/></td>
                                                 </tr>
                                             </tbody>
@@ -86,155 +90,160 @@ class ProfilKaryawan extends Component{
                                     </div>
                                 </div>
                                 
-                                <div class='col-5'>
-                                    <div class="table-responsive">
-                                    <h4><i class="fas fa-user-tie"></i>&nbsp;&nbsp;Data Karyawan</h4>
+                                {/* Data Karyawan */}
+
+                                <div class="table-responsive mt-3 mx-5">
+                                    <h4><i class="fas fa-user-tie mb-3"></i>&nbsp;&nbsp;Data Karyawan</h4>
                                         <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                             <tbody>
                                                 <tr>
-                                                    <th style={{width:120}} class="table-dark">Department</th>
+                                                    <th style={{width:150}}>Department</th>
                                                     <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.fulldept}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-dark">Jabatan</th>
+                                                    <th>Jabatan</th>
                                                     <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.jabatan}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-dark">Divisi</th>
+                                                    <th>Divisi</th>
                                                     <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.divisi}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-dark">Seksi</th>
+                                                    <th>Seksi</th>
                                                     <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.seksi}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th class="table-dark">Status</th>
+                                                    <th >Status</th>
                                                     <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.stat_peg}/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tanggal Masuk</th>
+                                                    <td><input type='date' style={{width:200}} className="form-control" defaultValue={this.state.tgl_masuk}/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tanggal Awal</th>
+                                                    <td><input type='date' style={{width:200}} className="form-control" defaultValue={this.state.tgl_awal}/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Tanggal Akhir</th>
+                                                    <td><input type='date' style={{width:200}} className="form-control" defaultValue={this.state.tgl_akhir}/></td>
                                                 </tr>
                                             </tbody>
                                         </table>    
                                     </div>
-                                </div>
-                                
+
+                                {/* Data Pribadi */}
+                                                                
                                 <div class="table-responsive mt-3 mx-5">
+                                    <h4><i class="fas fa-user-circle mb-3"></i>&nbsp;&nbsp;Pribadi</h4>
                                     <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                        <thead className='thead-dark'>
-                                        <tr>
-                                            <th>Tanggal Masuk</th>
-                                            <th>Tanggal Awal</th>
-                                            <th>Tanggal Akhir</th>
-                                        </tr>
-                                        </thead>
                                         <tbody>
-                                            <td><input type='date' className="form-control" defaultValue={this.state.tgl_masuk}/></td>
-                                            <td><input type='date' className="form-control" defaultValue={this.state.tgl_awal}/></td>
-                                            <td><input type='date' className="form-control" defaultValue={this.state.tgl_akhir}/></td>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <div class="table-responsive mt-3 mx-5">
-                                    <h4><i class="fas fa-user-circle"></i>&nbsp;&nbsp;Pribadi</h4>
-                                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                        <thead className='thead-dark'>
-                                        <tr>
-                                            <th>Pendidikan</th>
-                                            <th>Status</th>
-                                            <th>Ibu Kandung</th>
-                                            <th>Pasangan</th>
-                                            <th>Jumlah Anak</th>
-                                            <th>Agama</th>
-                                            <th>No. telp</th>
-                                            <th>Emergency</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.didik}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.status}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.ibu_kandung}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.nama_pasangan}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.jml_anak}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.agama}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.telp}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.emergency}/></td>
+                                            <tr>
+                                                <th>Pendidikan</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.didik}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Status</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.status}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ibu Kandung</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.ibu_kandung}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Pasangan</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.nama_pasangan}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Jumlah Anak</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.jml_anak}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Agama</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.agama}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>No. telp</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.telp}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Emergency</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.emergency}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th style={{width:150}}>Alamat</th>
+                                                <td class='table-secondary'>
+                                                    <input className="form-control mb-2" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.alamat}/>
+                                                    <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.alamat1}/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>No. KTP</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_ktp}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>No. Rekening</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_rek}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>No. Rekening P</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_rekp}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>NPWP</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.npwp}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>No. KPJ</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_kpj}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>No. SIM</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.sim}/></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
 
-                                <div class="table-responsive mt-1 mx-5">
-                                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                    <tbody>
-                                        <tr>
-                                            <th style={{width:120}} class="table-dark">Alamat</th>
-                                            <td class='table-secondary'>
-                                                <input className="form-control mb-2" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.alamat}/>
-                                                <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.alamat1}/>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                    </table>
-                                </div>
+                                {/* File Lampiran */}
 
-                                <div class="table-responsive mt-1 mx-5">
-                                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                        <thead className='thead-dark'>
-                                        <tr>
-                                            <th>No. KTP</th>
-                                            <th>No. Rekening</th>
-                                            <th>No. Rekening P</th>
-                                            <th>NPWP</th>
-                                            <th>No. KPJ</th>
-                                            <th>No. SIM</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_ktp}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_rek}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_rekp}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.npwp}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_kpj}/></td>
-                                            <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.sim}/></td>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
                                 <div class="table-responsive mt-3 mx-5">
-                                    <h4><i class="fas fa-folder"></i>&nbsp;&nbsp;File Lampiran</h4>
+                                    <h4><i class="fas fa-folder mb-3"></i>&nbsp;&nbsp;File Lampiran</h4>
                                     <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                                     <tbody>
                                         <tr>
-                                            <th style={{width:120}} class="table-dark">File 1</th>
+                                            <th style={{width:120}} >File 1</th>
                                             <td class='table-secondary'>{this.state.karyawan.file1 ? this.state.karyawan.file1 : <input type="file" id="f1" name="f1"/>}</td>
                                         
-                                            <th style={{width:120}} class="table-dark">File 6</th>
+                                            <th style={{width:120}} >File 6</th>
                                             <td class='table-secondary'>{this.state.karyawan.file6 ? this.state.karyawan.file6 : <input type="file" id="f6" name="f6"/>}</td>
                                         </tr>
                                         <tr>
-                                            <th style={{width:120}} class="table-dark">File 2</th>
+                                            <th style={{width:120}} >File 2</th>
                                             <td class='table-secondary'>{this.state.karyawan.file2 ? this.state.karyawan.file2 : <input type="file" id="f2" name="f2"/>}</td>
                                         
-                                            <th style={{width:120}} class="table-dark">File 7</th>
+                                            <th style={{width:120}} >File 7</th>
                                             <td class='table-secondary'>{this.state.karyawan.file7 ? this.state.karyawan.file7 : <input type="file" id="f7" name="f7"/>}</td>
                                         </tr>
                                         <tr>
-                                            <th style={{width:120}} class="table-dark">File 3</th>
+                                            <th style={{width:120}} >File 3</th>
                                             <td class='table-secondary'>{this.state.karyawan.file3 ? this.state.karyawan.file3 : <input type="file" id="f3" name="f3"/>}</td>
                                         
-                                            <th style={{width:120}} class="table-dark">File 8</th>
+                                            <th style={{width:120}} >File 8</th>
                                             <td class='table-secondary'>{this.state.karyawan.file8 ? this.state.karyawan.file8 : <input type="file" id="f8" name="f8"/>}</td>
                                         </tr>
                                         <tr>
-                                            <th style={{width:120}} class="table-dark">File 4</th>
+                                            <th style={{width:120}} >File 4</th>
                                             <td class='table-secondary'>{this.state.karyawan.file4 ? this.state.karyawan.file4 : <input type="file" id="f4" name="f4"/>}</td>
                                         
-                                            <th style={{width:120}} class="table-dark">File 9</th>
+                                            <th style={{width:120}} >File 9</th>
                                             <td class='table-secondary'>{this.state.karyawan.file9 ? this.state.karyawan.file9 : <input type="file" id="f9" name="f9"/>}</td>
                                         </tr>
                                         <tr>
-                                            <th style={{width:120}} class="table-dark">File 5</th>
+                                            <th style={{width:120}} >File 5</th>
                                             <td class='table-secondary'>{this.state.karyawan.file5 ? this.state.karyawan.file5 : <input type="file" id="f5" name="f5"/>}</td>
                                         
-                                            <th style={{width:120}} class="table-dark">File 10</th>
+                                            <th style={{width:120}} >File 10</th>
                                             <td class='table-secondary'>{this.state.karyawan.file10 ? this.state.karyawan.file10 : <input type="file" id="f10" name="f10"/>}</td>
                                         </tr>
                                     </tbody>
