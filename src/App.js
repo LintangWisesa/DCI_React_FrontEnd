@@ -6,10 +6,11 @@ import SimpleStorage from "react-simple-storage";
 
 import { Link, Route } from 'react-router-dom'
 import welcome from './0_welcome'
-import FileUser from './0_FileUser'
-import Profil from './0_Profil'
-import MasterKaryawan from './0_MasterKaryawan'
-import ProfilKaryawan from './0_ProfilKaryawan'
+import FileUser from './0_UserFile'
+import Profil from './0_UserProfil'
+import MasterKaryawan from './0_KaryawanMaster'
+import ProfilKaryawan from './0_KaryawanProfil'
+import TambahKaryawan from './0_KaryawanTambah'
 
 class App extends Component {
   
@@ -328,6 +329,7 @@ class App extends Component {
           <Route path="/Profil" render={(props) => <Profil {...props} datauser={this.state.user} />}/>
           <Route path="/Master Karyawan" component={MasterKaryawan}/>
           <Route path="/karyawan/:profil" component={ProfilKaryawan}/>
+          <Route path="/Add Karyawan" component={TambahKaryawan}/>
         </div>
       </div>
 

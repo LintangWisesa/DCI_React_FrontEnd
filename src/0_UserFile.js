@@ -9,7 +9,9 @@ class FileUser extends Component{
         allNewMenu: [],
         allDepts: [],
         userEdit: {},
-        cek: false
+        cek: false,
+        editnama: '', editpass: '', editdept: '', editmenu: [],
+        newnama: '', newpass: '', newdept: '', newmenu: [], newid: ''
     }
 
     componentDidMount(){
@@ -30,31 +32,75 @@ class FileUser extends Component{
             console.log('error')
         })
     }
+    ubahmenu = (x, y) => {
+        console.log(x+' '+y)
+    }
 
-    ubahnama = (x) => {
-        this.setState({
-            userEdit: {
-                nama: x
-            }
+    editDataUser = (id) => {
+        console.log(id)
+        var nama = this.state.editnama ? this.state.editnama : this.state.userEdit.nama
+        var pass = this.state.editpass ? this.state.editpass : this.state.userEdit.pass
+        var dept = this.state.editdept ? this.state.editdept : this.state.userEdit.dept
+        var menu = this.state.editmenu
+        axios.put(`http://localhost:1234/users/${id}`, {
+            nama: nama,
+            pass: pass,
+            dept: dept
+        }).then((x)=>{
+            console.log(x)
+            var menuBaru = this.state.editmenu.map((val,i)=>{
+                return [id, val.id_menu, val.status]
+            })
+            axios.post('http://localhost:1234/menu', {
+                dataBaru: menuBaru,
+            }).then((x)=>{
+                console.log(x)
+            }).catch((x)=>{
+                console.log(x)
+            })
+        }).catch((x)=>{
+            console.log(x)
         })
+        window.location.reload()
     }
-    ubahpass = (x) => {
-        this.setState({
-            userEdit: {
-                pass: x
-            }
+
+    addDataUser = () => {
+        console.log(this.state.newnama)
+        console.log(this.state.newpass)
+        console.log(this.state.newdept)
+        console.log(this.state.newmenu)
+        axios.post('http://localhost:1234/users', {
+            nama: this.state.newnama,
+            pass: this.state.newpass,
+            dept: this.state.newdept
+        }).then((x)=>{
+            // console.log(x)
+            console.log(x.data[0].id)
+            var newid = x.data[0].id
+            var menuBaru = this.state.newmenu.map((val,i)=>{
+                return [newid, val.id_menu, val.status]
+            })
+            axios.post('http://localhost:1234/menu', {
+                dataBaru: menuBaru,
+            }).then((x)=>{
+                console.log(x)
+            }).catch((x)=>{
+                console.log(x)
+            })
+        }).catch((x)=>{
+            console.log(x)
         })
+        window.location.reload()
     }
-    ubahdept = (x) => {
-        this.setState({
-            userEdit: {
-                dept: x
-            }
+
+    hapusDataUser = (id) => {
+        console.log(id)
+        axios.delete(`http://localhost:1234/users/${id}`).then(()=>{
+            console.log('Hapus sukses')
+        }).catch(()=>{
+            console.log('error')
         })
-        console.log(x)
-    }
-    ubahmenu = (x) => {
-        console.log(x)
+        window.location.reload()
     }
 
     render(){
@@ -97,10 +143,42 @@ class FileUser extends Component{
             }
             return(
                 <label key={i} className="col-md-4" style={{fontSize:'12px'}}>
-                    <input type = "checkbox"
+                    <input type = "checkbox" ref={`cekbok${i}`}
                     defaultChecked = {dataMenu.status === 'ok' ? true : false}
                     value = {[dataMenu.id_user, dataMenu.id_menu]}
-                    onChange = {(e)=>{this.ubahmenu(e.target.value)}}
+                    onChange = {(e)=>{
+                        var dataKirim = []
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:1, status:this.refs.cekbok0.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:2, status:this.refs.cekbok1.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:3, status:this.refs.cekbok2.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:4, status:this.refs.cekbok3.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:5, status:this.refs.cekbok4.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:6, status:this.refs.cekbok5.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:7, status:this.refs.cekbok6.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:8, status:this.refs.cekbok7.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:9, status:this.refs.cekbok8.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:10, status:this.refs.cekbok9.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:11, status:this.refs.cekbok10.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:12, status:this.refs.cekbok11.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:13, status:this.refs.cekbok12.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:14, status:this.refs.cekbok13.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:15, status:this.refs.cekbok14.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:16, status:this.refs.cekbok15.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:17, status:this.refs.cekbok16.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:18, status:this.refs.cekbok17.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:19, status:this.refs.cekbok18.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:20, status:this.refs.cekbok19.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:21, status:this.refs.cekbok20.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:22, status:this.refs.cekbok21.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:23, status:this.refs.cekbok22.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:24, status:this.refs.cekbok23.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:25, status:this.refs.cekbok24.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:26, status:this.refs.cekbok25.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:27, status:this.refs.cekbok26.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:28, status:this.refs.cekbok27.checked ? 'ok' : 'no access'})
+                        console.log(dataKirim)
+                        this.setState({editmenu: dataKirim})
+                    }}
                     />
                     &nbsp;{dataMenu.submenu}
                 </label>
@@ -116,7 +194,39 @@ class FileUser extends Component{
                 <label key={i} className="col-md-4" style={{fontSize:'12px'}}>
                     <input type = "checkbox" ref={`cekbok${i}`}
                     value = {dataMenu.id}
-                    onChange = {(e)=>{console.log(dataMenu.id, this.refs)}}
+                    onChange = {(e)=>{
+                        var dataKirim = []
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:1, status:this.refs.cekbok0.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:2, status:this.refs.cekbok1.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:3, status:this.refs.cekbok2.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:4, status:this.refs.cekbok3.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:5, status:this.refs.cekbok4.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:6, status:this.refs.cekbok5.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:7, status:this.refs.cekbok6.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:8, status:this.refs.cekbok7.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:9, status:this.refs.cekbok8.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:10, status:this.refs.cekbok9.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:11, status:this.refs.cekbok10.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:12, status:this.refs.cekbok11.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:13, status:this.refs.cekbok12.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:14, status:this.refs.cekbok13.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:15, status:this.refs.cekbok14.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:16, status:this.refs.cekbok15.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:17, status:this.refs.cekbok16.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:18, status:this.refs.cekbok17.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:19, status:this.refs.cekbok18.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:20, status:this.refs.cekbok19.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:21, status:this.refs.cekbok20.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:22, status:this.refs.cekbok21.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:23, status:this.refs.cekbok22.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:24, status:this.refs.cekbok23.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:25, status:this.refs.cekbok24.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:26, status:this.refs.cekbok25.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:27, status:this.refs.cekbok26.checked ? 'ok' : 'no access'})
+                        dataKirim.push({id_user:dataMenu.id_user, id_menu:28, status:this.refs.cekbok27.checked ? 'ok' : 'no access'})
+                        console.log(dataKirim)
+                        this.setState({newmenu: dataKirim})
+                    }}
                     />
                     &nbsp;{dataMenu.submenu}
                 </label>
@@ -156,7 +266,9 @@ class FileUser extends Component{
                             <i class="fas fa-edit"></i>&nbsp;&nbsp;Edit
                         </button>
                         &nbsp;&nbsp;
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                        <button 
+                        onClick={()=>{this.hapusDataUser(dataUser.id)}}
+                        type="button" class="btn btn-danger">
                             <i class="fas fa-trash-alt"></i>&nbsp;&nbsp;Hapus
                         </button>
                     </td>
@@ -239,8 +351,11 @@ class FileUser extends Component{
                                 <div class="row">
                                     <div class="form-group" className="col-md-4">
                                         <div class="form-label-group">
-                                        <input onChange={(e)=>{this.ubahnama(e.target.value)}} 
-                                        value={this.state.userEdit.nama} 
+                                        <input onChange={(e)=>{
+                                            console.log(e.target.value)
+                                            this.setState({editnama: e.target.value})
+                                        }} 
+                                        defaultValue={this.state.userEdit.nama}
                                         ref='nama' type="text" id="inputNama" class="form-control" 
                                         placeholder="Ketik nama..." required="required" autofocus="autofocus"/>
                                         <label for="inputNama">Nama</label>
@@ -248,14 +363,21 @@ class FileUser extends Component{
                                     </div>
                                     <div class="form-group" className="col-md-4">
                                         <div class="form-label-group">
-                                        <input onChange={(e)=>{this.ubahpass(e.target.value)}}
-                                        value={this.state.userEdit.pass} ref='password' type="text" id="inputPassword" class="form-control" placeholder="Password" required="required"/>
+                                        <input onChange={(e)=>{
+                                            console.log(e.target.value)
+                                            this.setState({editpass: e.target.value})
+                                        }}
+                                        defaultValue={this.state.userEdit.pass}
+                                        ref='password' type="text" id="inputPassword" class="form-control" placeholder="Password" required="required"/>
                                         <label for="inputPassword">Password</label>
                                         </div>
                                     </div>
                                     <div class="form-group" className="col-md-4">
                                         <div class="form-label-group">
-                                        <select onChange={(e)=>{this.ubahdept(e.target.value)}}
+                                        <select onChange={(e)=>{
+                                            console.log(e.target.value)
+                                            this.setState({editdept: e.target.value})
+                                        }}
                                         select={this.state.userEdit.dept} ref='dept' type="text" id="inputDept" 
                                         class="custom-select form-control" placeholder="Dept" required="required">
                                             <option selected disabled hidden value={this.state.userEdit.dept}>
@@ -276,7 +398,9 @@ class FileUser extends Component{
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button href="/File%20User" type="button" class="btn btn-success">
+                                    <button
+                                    onClick = {()=>{this.editDataUser(this.state.userEdit.id)}} 
+                                    href="/File%20User" type="button" class="btn btn-success">
                                         <i class="far fa-save"></i>&nbsp;&nbsp;Simpan
                                     </button>
                                     <button onClick={()=>{window.location.reload()}} href="/File%20User" type="button" class="btn btn-danger" data-dismiss="modal">
@@ -307,23 +431,28 @@ class FileUser extends Component{
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <div class="form-label-group">
-                                        <input ref='nama' type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus"/>
+                                        <input onChange={(e)=>{this.setState({newnama: e.target.value})}} ref='nama' 
+                                        type="text" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus"/>
                                         <label for="inputEmail">Nama pengguna</label>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <div class="form-label-group">
-                                        <input ref='pass' type="email" id="inputPass" class="form-control" placeholder="Email address" required="required" autofocus="autofocus"/>
+                                        <input onChange={(e)=>{this.setState({newpass: e.target.value})}} ref='pass' 
+                                        type="text" id="inputPass" class="form-control" placeholder="Email address" required="required" autofocus="autofocus"/>
                                         <label for="inputPass">Password</label>
                                         </div>
                                     </div>
                                     <div class="form-group" className="col-md-4">
                                         <div class="form-label-group">
-                                        <select
+                                        <select onChange={(e)=>{
+                                            console.log(e.target.value)
+                                            this.setState({newdept: e.target.value})
+                                        }}
                                         ref='dept' type="text" id="inputDept" 
                                         class="custom-select form-control" placeholder="Dept" required="required">
-                                            <option hidden>
-                                                Pilih department...
+                                            <option selected disabled hidden value='Pilih Department...'>
+                                                Pilih department... {this.state.userEdit.dept} {this.state.userEdit.fulldept}
                                             </option>
                                             {allDepts}
                                         </select>
@@ -340,7 +469,9 @@ class FileUser extends Component{
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button href="/File%20User" type="button" class="btn btn-success">
+                                    <button 
+                                    onClick={()=>{this.addDataUser()}}
+                                    href="/File%20User" type="button" class="btn btn-success">
                                         <i class="far fa-save"></i>&nbsp;&nbsp;Simpan
                                     </button>
                                     <button onClick={()=>{window.location.reload()}} href="/File%20User" type="button" class="btn btn-danger" data-dismiss="modal">

@@ -66,8 +66,8 @@ class MasterKaryawan extends Component{
                     
                     <div class="card-body" style={{textTransform: 'capitalize'}}>
                         
-                        <button className="btn btn-success mb-3" 
-                        data-toggle="modal" data-target="#exampleModalCenter2">
+                        <button onClick={()=>{window.location.href = "/Add%20Karyawan";}} 
+                        className="btn btn-success mb-3">
                             <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Tambah Karyawan
                         </button>
 
@@ -108,7 +108,7 @@ class MasterKaryawan extends Component{
                 </div>
                 </div>
                 <a class="scroll-to-top rounded" href="#page-top">
-                <i class="fas fa-angle-up"></i>
+                    <i class="fas fa-angle-up"></i>
                 </a>
             
         </div>
