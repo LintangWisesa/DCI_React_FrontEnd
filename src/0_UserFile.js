@@ -374,15 +374,15 @@ class FileUser extends Component{
                                     </div>
                                     <div class="form-group" className="col-md-4">
                                         <div class="form-label-group">
-                                        <select onChange={(e)=>{
-                                            console.log(e.target.value)
-                                            this.setState({editdept: e.target.value})
-                                        }}
-                                        select={this.state.userEdit.dept} ref='dept' type="text" id="inputDept" 
-                                        class="custom-select form-control" placeholder="Dept" required="required">
-                                            <option selected disabled hidden value={this.state.userEdit.dept}>
-                                                Dept: {this.state.userEdit.dept}/{this.state.userEdit.fulldept}
-                                            </option>
+                                            <select onChange={(e)=>{
+                                                console.log(e.target.value)
+                                                this.setState({editdept: e.target.value})
+                                            }}
+                                            select={this.state.userEdit.dept} ref='dept' type="text" id="inputDept" 
+                                            class="custom-select form-control" placeholder="Dept" required="required">
+                                                <option selected disabled hidden value={this.state.userEdit.dept}>
+                                                    Dept: {this.state.userEdit.dept}/{this.state.userEdit.fulldept}
+                                                </option>
                                             {allDepts}
                                         </select>
                                         </div>

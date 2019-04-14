@@ -53,30 +53,44 @@ class ProfilKaryawan extends Component{
 
                                 {/* Data Diri */}
 
-                                <div class='col-4 mx-5'>
+                                <div class='col-8 mx-5'>
                                     <div class="table-responsive">
                                         <h4><i class="mb-3 far fa-address-card"></i>&nbsp;&nbsp;Data Diri</h4>
-                                        <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                                            <tbody>
+                                        <table class="row table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                                            <tbody className='col-12'>
                                                 <tr>
                                                     <th style={{width:150}}>NIP</th>
                                                     <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.nip}/></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Nama</th>
+
+                                                    <th style={{width:150}}>Nama</th>
                                                     <td><input className="form-control"style={{textTransform:'capitalize'}}  defaultValue={this.state.karyawan.nama}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Gender</th>
-                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kelamin}/></td>
-                                                </tr>
-                                                <tr>
+                                                    <th>Tempat Lahir</th>
+                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.lahir}/></td>
+                                                
                                                     <th>Tanggal Lahir</th>
                                                     <td><input type='date' className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.tgl_lahir}/></td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Kota Asal</th>
-                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.lahir}/></td>
+                                                    <th style={{width:150}}>Gender</th>
+                                                    <td>
+                                                        {/* <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kategori}/> */}
+                                                        <select onChange={(e)=>{
+                                                            console.log(e.target.value)
+                                                            // this.setState({editdept: e.target.value})
+                                                        }}
+                                                        style={{textTransform:'capitalize'}}
+                                                        select={this.state.karyawan.kelamin} ref='dep' type="text" 
+                                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                                            <option selected disabled hidden value={this.state.karyawan.kelamin}>{this.state.karyawan.kelamin}</option>
+                                                            <option>L (Laki-laki)</option>
+                                                            <option>P (Perempuan)</option>
+                                                        </select>
+                                                    </td>
+
+                                                    <th>Agama</th>
+                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.agama}/></td>
                                                 </tr>
                                             </tbody>
                                         </table>    
@@ -85,7 +99,7 @@ class ProfilKaryawan extends Component{
 
                                 {/* Foto */}
                                 
-                                <div class='col-3' style={{textAlign: 'center'}}>
+                                <div class='col-3' style={{textAlign: 'left'}}>
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9HFLw9fcwYyNkUls-_g8umpEqAZlp4WHViwoFqr9vq3wqhlmu" 
                                     class="rounded-circle my-4"/>
                                     <br/>
@@ -101,32 +115,175 @@ class ProfilKaryawan extends Component{
                                         <table class="table table-bordered table-hover row" width='100%' id="dataTable" cellspacing="0">
                                             <tbody className='col-12'>
                                                 <tr>
+                                                    <th style={{width:150}}>Kategori ???</th>
+                                                    <td>
+                                                        {/* <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kategori}/> */}
+                                                        <select onChange={(e)=>{
+                                                            console.log(e.target.value)
+                                                            // this.setState({editdept: e.target.value})
+                                                        }}
+                                                        style={{textTransform:'capitalize'}}
+                                                        select={this.state.karyawan.kategori} ref='kat' type="text" 
+                                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                                            <option selected disabled hidden value={this.state.karyawan.kategori}>{this.state.karyawan.kategori}</option>
+                                                            <option>DR (Direct)</option>
+                                                            <option>IN (Indirect)</option>
+                                                            <option>SD (Semi Direct)</option>
+                                                        </select>
+                                                    </td>
+                                                    
                                                     <th style={{width:150}}>Department</th>
-                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.fulldept}/></td>
-
-                                                    <th style={{width:150}}>Status</th>
-                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.stat_peg}/></td>
+                                                    <td>
+                                                        {/* <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kategori}/> */}
+                                                        <select onChange={(e)=>{
+                                                            console.log(e.target.value)
+                                                            // this.setState({editdept: e.target.value})
+                                                        }}
+                                                        style={{textTransform:'capitalize'}}
+                                                        select={this.state.karyawan.fulldept} ref='dep' type="text" 
+                                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                                            <option selected disabled hidden value={this.state.karyawan.fulldept}>{this.state.karyawan.fulldept}</option>
+                                                            <option>AC (Accounting & Finance)</option>
+                                                            <option>DL (Delivery)</option>
+                                                            <option>EG (Engineering)</option>
+                                                            <option>GA (General Affair)</option>
+                                                            <option>HR (Human Resources)</option>
+                                                        </select>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Jabatan</th>
-                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.jabatan}/></td>
-                                                
+                                                    <th style={{width:150}}>Divisi ???</th>
+                                                    <td>
+                                                        {/* <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kategori}/> */}
+                                                        <select onChange={(e)=>{
+                                                            console.log(e.target.value)
+                                                            // this.setState({editdept: e.target.value})
+                                                        }}
+                                                        style={{textTransform:'capitalize'}}
+                                                        select={this.state.karyawan.divisi} ref='dep' type="text" 
+                                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                                            <option selected disabled hidden value={this.state.karyawan.divisi}>{this.state.karyawan.divisi}</option>
+                                                            <option>AC (Accounting & Finance)</option>
+                                                            <option>DL (Delivery)</option>
+                                                            <option>EG (Engineering)</option>
+                                                            <option>GA (General Affair)</option>
+                                                            <option>HR (Human Resources)</option>
+                                                        </select>
+                                                    </td>
+                                                    
+                                                    <th style={{width:150}}>Subseksi ???</th>
+                                                    <td>
+                                                        {/* <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kategori}/> */}
+                                                        <select onChange={(e)=>{
+                                                            console.log(e.target.value)
+                                                            // this.setState({editdept: e.target.value})
+                                                        }}
+                                                        style={{textTransform:'capitalize'}}
+                                                        select={this.state.karyawan.sseksi} ref='dep' type="text" 
+                                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                                            <option selected disabled hidden value={this.state.karyawan.sseksi}>{this.state.karyawan.sseksi}</option>
+                                                            <option>AC (Accounting)</option>
+                                                            <option>FI (Finance)</option>
+                                                            <option>AK (Analis Kimia)</option>
+                                                            <option>BP (Big Press)</option>
+                                                            <option>SP (Small Press)</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th style={{width:150}}>Jabatan</th>
+                                                    <td>
+                                                        {/* <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kategori}/> */}
+                                                        <select onChange={(e)=>{
+                                                            console.log(e.target.value)
+                                                            // this.setState({editdept: e.target.value})
+                                                        }}
+                                                        style={{textTransform:'capitalize'}}
+                                                        select={this.state.karyawan.jabatan} ref='dep' type="text" 
+                                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                                            <option selected disabled hidden value={this.state.karyawan.jabatan}>{this.state.karyawan.jabatan}</option>
+                                                            <option>AD (Administrator)</option>
+                                                            <option>AM (Assistant Manager)</option>
+                                                            <option>AV (Advisor)</option>
+                                                            <option>DD (Driver Delivery)</option>
+                                                            <option>DO (Driver Office)</option>
+                                                            <option>DS (Dies Setter)</option>
+                                                        </select>
+                                                    </td>
+                                                    
+                                                    <th>Level</th>
+                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.level}/></td>                                                    
+                                                    
+                                                    
+                                                </tr>
+                                                <tr>
+                                                    <th style={{width:150}}>Status Pegawai</th>
+                                                    <td>
+                                                        {/* <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kategori}/> */}
+                                                        <select onChange={(e)=>{
+                                                            console.log(e.target.value)
+                                                            // this.setState({editdept: e.target.value})
+                                                        }}
+                                                        style={{textTransform:'capitalize'}}
+                                                        select={this.state.karyawan.stat_peg} ref='dep' type="text" 
+                                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                                            <option selected disabled hidden value={this.state.karyawan.stat_peg}>{this.state.karyawan.stat_peg}</option>
+                                                            <option>Tetap</option>
+                                                            <option>Kontrak</option>
+                                                            <option>Honor</option>
+                                                            <option>Outsourcing</option>
+                                                        </select>
+                                                    </td>
+                                                    
+                                                    <th style={{width:150}}>Asal Karyawan</th>
+                                                    <td>
+                                                        {/* <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kategori}/> */}
+                                                        <select onChange={(e)=>{
+                                                            console.log(e.target.value)
+                                                            // this.setState({editdept: e.target.value})
+                                                        }}
+                                                        style={{textTransform:'capitalize'}}
+                                                        select={this.state.karyawan.latar} ref='dep' type="text" 
+                                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                                            <option selected disabled hidden value={this.state.karyawan.latar}>{this.state.karyawan.latar}</option>
+                                                            <option>DCI</option>
+                                                            <option>AJ</option>
+                                                            <option>WPS</option>
+                                                            <option>Mardizu</option>
+                                                        </select>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
                                                     <th>Tanggal Masuk</th>
                                                     <td><input type='date' className="form-control" defaultValue={this.state.tgl_masuk}/></td>
-                                                </tr>
-                                                <tr>
-                                                    <th>Divisi</th>
-                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.divisi}/></td>
                                                 
-                                                    <th>Tanggal Awal</th>
-                                                    <td><input type='date' className="form-control" defaultValue={this.state.tgl_awal}/></td>
+                                                    <th style={{width:150}}>Staff/Non</th>
+                                                    <td>
+                                                        {/* <input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.kategori}/> */}
+                                                        <select onChange={(e)=>{
+                                                            console.log(e.target.value)
+                                                            // this.setState({editdept: e.target.value})
+                                                        }}
+                                                        style={{textTransform:'capitalize'}}
+                                                        select={this.state.karyawan.staff} ref='dep' type="text" 
+                                                        class="custom-select form-control" placeholder="Dept" required="required">
+                                                            <option selected disabled hidden value={this.state.karyawan.staff}>{this.state.karyawan.staff}</option>
+                                                            <option>Staff</option>
+                                                            <option>Non-Staff</option>
+                                                        </select>
+                                                    </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Seksi</th>
-                                                    <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.seksi}/></td>
+                                                    <th>Awal Kontrak</th>
+                                                    <td><input type='date' className="form-control" defaultValue={this.state.tgl_awal}/></td>
 
-                                                    <th>Tanggal Akhir</th>
+                                                    <th>Akhir Kontrak</th>
                                                     <td><input type='date' className="form-control" defaultValue={this.state.tgl_akhir}/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Catatan</th>
+                                                    <td><input type='text' className="form-control" defaultValue={'Tidak ada'}/></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -149,22 +306,47 @@ class ProfilKaryawan extends Component{
                                                 <th>Status</th>
                                                 <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.status}/></td>
                                             
-                                                <th>Agama</th>
-                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.agama}/></td>
+                                                <th>No. telp</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.telp}/></td>
                                             </tr>
                                             <tr>
                                                 <th>Ibu Kandung</th>
                                                 <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.ibu_kandung}/></td>
                                             
-                                                <th>No. telp</th>
-                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.telp}/></td>
-                                            </tr>
-                                            <tr>
                                                 <th>Pasangan</th>
                                                 <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.nama_pasangan}/></td>
-                                            
+                                            </tr>
+                                            <tr>
                                                 <th>Emergency</th>
                                                 <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.emergency}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>No. KTP</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_ktp}/></td>
+                                            
+                                                <th>NPWP</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.npwp}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>No. Rekening</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_rek}/></td>
+                                            
+                                                <th>No. Rekening P ??? Bank</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_rekp}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>SPSI</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.spsi}/></td>
+
+                                                <th>No. KPJ</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_kpj}/></td>
+                                            </tr>
+                                            <tr>
+                                                <th>No. SIM</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.sim}/></td>
+                                            
+                                                <th>Klinik ???</th>
+                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.sim}/></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -176,30 +358,6 @@ class ProfilKaryawan extends Component{
                                                     <input className="form-control mb-2" style={{width:585, textTransform:'capitalize'}} defaultValue={this.state.karyawan.alamat}/>
                                                     <input className="form-control" style={{width:585, textTransform:'capitalize'}} defaultValue={this.state.karyawan.alamat1}/>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <th>No. KTP</th>
-                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_ktp}/></td>
-                                            </tr>
-                                            <tr>
-                                                <th>No. Rekening</th>
-                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_rek}/></td>
-                                            </tr>
-                                            <tr>
-                                                <th>No. Rekening P</th>
-                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_rekp}/></td>
-                                            </tr>
-                                            <tr>
-                                                <th>NPWP</th>
-                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.npwp}/></td>
-                                            </tr>
-                                            <tr>
-                                                <th>No. KPJ</th>
-                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.no_kpj}/></td>
-                                            </tr>
-                                            <tr>
-                                                <th>No. SIM</th>
-                                                <td><input className="form-control" style={{textTransform:'capitalize'}} defaultValue={this.state.karyawan.sim}/></td>
                                             </tr>
                                         </tbody>
                                     </table>

@@ -201,7 +201,7 @@ class App extends Component {
     </div>
 
     var subMaster = this.state.subMaster.map((val, i)=>{
-      if (this.state.subMaster.length > 1){  
+      if (this.state.subMaster.length > 0){  
         var menu = val.submenu
         return (
         // <Link to={`/${menu}`}>
@@ -219,7 +219,7 @@ class App extends Component {
     })
 
     var subMutasi = this.state.subMutasi.map((val, i)=>{
-      if (this.state.subMutasi.length > 1){  
+      if (this.state.subMutasi.length > 0){  
         var menu = val.submenu
         return (
         // <Link to={`/${menu}`}>
@@ -237,7 +237,7 @@ class App extends Component {
     })
 
     var subLaporan = this.state.subLaporan.map((val, i)=>{
-      if (this.state.subLaporan.length > 1){  
+      if (this.state.subLaporan.length > 0){  
         var menu = val.submenu
         return (
         // <Link to={`/${menu}`}>
